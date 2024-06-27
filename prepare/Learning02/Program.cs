@@ -26,5 +26,17 @@ class Program
         myResume._jobs.Add(job2);
 
         myResume.Dispaly();
+
+        {
+        Journal journal = new Journal();
+
+        Entry entry1 = new Entry { _date = "2023-01-01", _promptText = "What did you learn today?", _entryText = "I learned about C# classes." };
+        journal.AddEntry(entry1);
+
+        Entry entry2 = new Entry { _date = "2023-01-02", _promptText = "What are you grateful for?", _entryText = "I am grateful for my family." };
+        journal.AddEntry(entry2);
+
+        journal.DisplayAll();
+        }
     }
 }
