@@ -1,15 +1,19 @@
-using System;
+using System.IO;
 using System.Collections.Generic;
 
 public class Journal
 {
-    public List<Entry> _entries = new List<Entry>();
+    private List<Entry> _entries;
 
-    public void AddEntry(Entry newEntry)
+    public Journal()
     {
-        _entries.Add(newEntry);
+        _entries = new List<Entry>();
     }
 
+    public void AddEntry(Entry entry)
+    {
+        _entries.Add(entry);
+    }
     public void DisplayAll()
     {
         foreach (var entry in _entries)
@@ -18,13 +22,31 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string file)
+    public void SaveToFile(string filename)
     {
-        
+       using (StreamWriter outputFile = new StreamWriter(filename)) 
+       {
+            foreach (var entry in _entries)
+            {
+                outputFile.WriteLine($"{entry._date}|{entry._prompt}|{entry._response}");
+            }
+       }
     }
 
-    public void LoadFromFile(string file)
+    public void LoadFromFile(string filename)
     {
-        
+        _entries.Clear();
+        string[] lines = System.IO.File.ReadAllLines(filename);
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split('|');
+            string date = parts[0];
+            string prompt = parts[1];
+            string response = parts[2];
+
+            Entry entry = new Entry(date, prompt, response);
+            _entries.Add(entry);
+        }
     }
 }

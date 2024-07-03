@@ -4,39 +4,48 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello Learning02 World!");
-        // Instance
-        Job job1 = new Job();
-        job1._jobTitle = "Software Engineer";
-        job1._company = "Microsoft";
-        job1._startYear = 2019;
-        job1._endYear = 2022;
+        Journal myJournal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
+        string userChoice;
 
-        job1.DisplayJobDetails();
-
-        Job job2 = new Job();
-        job2._jobTitle = "Manager";
-        job2._company = "Apple";
-        job2._startYear = 2022;
-        job2._endYear = 2023;
-
-        Resume myResume = new Resume();
-        myResume._name = "Allison Rose";
-        myResume._jobs.Add(job1);
-        myResume._jobs.Add(job2);
-
-        myResume.Dispaly();
-
+        do
         {
-        Journal journal = new Journal();
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1. Write a new entry");
+            Console.WriteLine("2. Display the journal");
+            Console.WriteLine("3. Save the journal to a file");
+            Console.WriteLine("4. Load the journal from a file");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your choice: ");
+            userChoice = Console.ReadLine();
 
-        Entry entry1 = new Entry { _date = "2023-01-01", _promptText = "What did you learn today?", _entryText = "I learned about C# classes." };
-        journal.AddEntry(entry1);
+            switch (userChoice)
+            {
+                case "1":
+                    string prompt = promptGenerator.GetRandomPrompt();
+                    Console.WriteLine(prompt);
+                    string response = Console.ReadLine();
+                    string date = DateTime.Now.ToShortDateString();
+                    Entry entry = new Entry(date, prompt, response);
+                    myJournal.AddEntry(entry);
+                    break;
 
-        Entry entry2 = new Entry { _date = "2023-01-02", _promptText = "What are you grateful for?", _entryText = "I am grateful for my family." };
-        journal.AddEntry(entry2);
+                case "2":
+                    myJournal.DisplayAll();
+                    break;
 
-        journal.DisplayAll();
-        }
+                case "3":
+                    Console.Write("Enter filename to save the journal: ");
+                    string saveFilename = Console.ReadLine();
+                    myJournal.SaveToFile(saveFilename);
+                    break;
+
+                case "4":
+                    Console.Write("Enter filename to load the journal: ");
+                    string loadFilename = Console.ReadLine();
+                    myJournal.LoadFromFile(loadFilename);
+                    break;
+            }
+        } while (userChoice != "5");
     }
 }
