@@ -39,3 +39,9 @@ class Program
         }
     }
 }
+
+/*
+Extra Features Added:
+To make this mindfulness program more engaging and user-friendly, several enhancements have been implemented. Meaningful spinner and countdown animations have been added during pauses to make the experience more interactive. Detailed prompts and instructions are provided to guide users through each activity, ensuring clarity and ease of use. After completing the listing activity, users receive feedback on the number of items they listed, adding a sense of accomplishment. The code is designed with separate classes for each activity, ensuring it is easy to maintain and extend. Additionally, random prompts and questions in the reflection and listing activities offer a varied experience each time, and users can set their own activity duration for greater flexibility.
+*/
+```
