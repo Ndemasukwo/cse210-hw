@@ -1,0 +1,4 @@
+0
+Simple Goal:; Finish School; Study Hard; 6; False
+Eternal Goal:; Get Married; Find Woman; 10; False
+Check List Goal:; Finish School; Study Hard; 6; False; 3; 3; 0
